@@ -4,7 +4,7 @@ import productsReducer from '../features/counter/productsSlicer'
 
 export const store = configureStore({
   reducer: {
-    productsSlice : productsReducer,
+    products : productsReducer,
   },
 });
 

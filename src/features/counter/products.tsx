@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks.ts';
-import { CounterState, getProds, selectProds, setProducts } from './productsSlicer.ts';
-import { Product } from './Product';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store.ts';
+import { CounterState, loadProducts, selectProds} from './productsSlicer.ts';
+import { Product } from './Product.ts';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../app/store.ts';
 
 
 
 export function Counter() {
 
-  const SERVER = "http://localhost:4000/products"
-  const products = useAppSelector(selectProds) || [];
+  // const SERVER = "http://localhost:4000/products"
+  const products = useSelector((state:RootState) => state.products);
+  const dispatch = useDispatch<AppDispatch>();
+  // const products = useAppSelector(selectProds) || [];
   // const products = useAppSelector(state => state.products.products) || [];
   // const products = useSelector((state: RootState) => state.products.products) || [];
 
 
   useEffect(() => { 
-    console.log("Counter component mounted!"); 
+    dispatch(loadProducts());
 }, []);
 
 
