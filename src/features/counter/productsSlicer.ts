@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState} from '../../app/store';
+import { RootState} from '../../app/store.ts';
 import { fetchProds } from './counterAPI.ts';
-import { Product } from './Product';
+import { Product } from './Product.ts';
+import { useAppSelector } from '../../app/hooks.ts';
+import React from 'react';
 
 export interface CounterState {
+  // map(arg0: (prod: any) => JSX.Element): import("react").ReactNode;
   products: Product[];
 }
 
@@ -12,7 +15,7 @@ export const initialState: CounterState = {
 };
 
 export const getProds = createAsyncThunk(
-  'counter/fetchProd',
+  'product/fetchProds',
   async () => {
     const response = await fetchProds();
     return response.data;
@@ -21,11 +24,9 @@ export const getProds = createAsyncThunk(
 
 const productsSlice = createSlice({
   name: 'products',
-  initialState: {
-    products: [],
-  },
+  initialState,
   reducers: {
-    setProducts(state, action) {
+    setProducts(state, action: PayloadAction<Product[]>) {
       state.products = action.payload;
     },
    
@@ -37,13 +38,9 @@ const productsSlice = createSlice({
   },
 });
 
-// Export actions
+
 export const { setProducts} = productsSlice.actions;
-
-// Async thunk action
-// Selector
-export const selectProds = (state) => state.products;
-
-// Export reducer
+export const selectProds = (state: RootState) => state.products;
 export default productsSlice.reducer;
+
 
