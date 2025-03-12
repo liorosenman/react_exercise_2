@@ -1,14 +1,16 @@
 import React from 'react';
-import  {Counter}  from './features/counter/Counter.tsx';
+// import  {Product}  from './features/counter/Product.ts';
 import './App.css';
+import { Products } from './features/counter/products.tsx';
 
 function App() {
   return (
     <div className="App">
       <h1>GOGOGOGOGOGOGO</h1>
-      <Counter>
+       <Products>
 
-      </Counter>
+      </Products> 
+
     </div>
   );
 }

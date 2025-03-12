@@ -14,15 +14,14 @@ export const initialState: CounterState = {
   products : []
 };
 
-export const loadProducts = createAsyncThunk("products/load", fetchProducts);
+// export const loadProducts = createAsyncThunk("products/load", fetchProducts);
 
-// export const getProds = createAsyncThunk(
-//   'products/load',
-//   async () => {
-//     const response = await fetchProducts();
-//     return response.data;
-//   }
-// );
+export const getProds = createAsyncThunk<Product[]>(
+  'products/fetchProducts',
+  async () => { 
+    return await fetchProducts();
+  }
+);
 
 const productsSlice = createSlice({
   name: 'products',
@@ -31,7 +30,7 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(loadProducts.fulfilled, (state, action: PayloadAction<Product[]>) => {
+    .addCase(getProds.fulfilled, (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
 
     });
@@ -40,7 +39,7 @@ const productsSlice = createSlice({
 
 
 // export const { setProducts} = productsSlice.actions;
-export const selectProds = (state: RootState) => state.products;
+export const selectProds = (state: RootState) => state.products.products;
 export default productsSlice.reducer;
 
 
