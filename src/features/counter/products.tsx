@@ -16,10 +16,10 @@ export function Products() {
   // const products = useSelector((state: RootState) => state.products.products) || [];
 
 
-//   useEffect(() => { 
-//     console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-//     // dispatch(getProds());
-// }, []);
+  useEffect(() => { 
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    dispatch(getProds());
+}, []);
 
 
   return (
@@ -28,11 +28,11 @@ export function Products() {
        Desc: <input/>
        Price: <input/>
       
-      {/* <ol>
+     <ol>
         {products.map(prod =>
           <li key={prod.id}> {prod.id}---{prod.desc}---${String(prod.price)}</li>
         )}
-      </ol>   */}
+      </ol>   
     </div>
   );
 }
