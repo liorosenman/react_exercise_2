@@ -1,6 +1,5 @@
 {
-    "products":[{"id":1, "desc":"pizza", "price":25},
-    {"id":2, "desc":"burger", "price":32}
+  "products": [
 
-]
-    }
+  ]
+}
